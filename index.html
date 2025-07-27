@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Word Counter</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+      textarea { width: 100%; height: 150px; margin-bottom: 10px; padding: 10px; }
+      #stats { margin-top: 15px; padding: 10px; border: 1px solid #ccc; background: #f9f9f9; }
+    </style>
+  </head>
+  <body>
+    <h2>Word Counter Tool</h2>
+
+    <textarea id="textInput" placeholder="Type or paste your text here..." oninput="countText()"></textarea>
+
+    <div id="stats">
+      <p><strong>Words:</strong> <span id="words">0</span></p>
+      <p><strong>Characters:</strong> <span id="characters">0</span></p>
+      <p><strong>Sentences:</strong> <span id="sentences">0</span></p>
+      <p><strong>Paragraphs:</strong> <span id="paragraphs">0</span></p>
+    </div>
+
+    <p style="font-size: 12px; margin-top: 20px;">
+      Like this tool? Support at 
+      <a href="https://www.buymeacoffee.com/donate2mrpress" target="_blank">buymeacoffee.com/donate2mrpress</a>
+    </p>
+
+    <script>
+      function countText() {
+        const text = document.getElementById("textInput").value;
+        document.getElementById("characters").textContent = text.length;
+
+        const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+        document.getElementById("words").textContent = words.length;
+
+        const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+        document.getElementById("sentences").textContent = sentences.length;
+
+        const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+        document.getElementById("paragraphs").textContent = paragraphs.length;
+      }
+    </script>
+  </body>
+</html>
